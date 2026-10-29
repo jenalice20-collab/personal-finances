@@ -26,7 +26,7 @@ namespace PersonalFinances.Models
         public virtual ICollection<Movement> Movements { get; set; } = new List<Movement>();
 
         [Display(Name = "Category balance")]
-        public double CategoryBalance
+        public decimal CategoryBalance
         {
             get
             {
@@ -35,7 +35,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Total credit")]
-        public double TotalCredit
+        public decimal TotalCredit
         {
             get
             {
@@ -44,7 +44,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Total debit")]
-        public double TotalDebit
+        public decimal TotalDebit
         {
             get
             {

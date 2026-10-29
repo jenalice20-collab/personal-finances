@@ -34,7 +34,7 @@ namespace PersonalFinances.Models
         public virtual ICollection<Movement> Movements { get; set; } = new List<Movement>();
 
         [Display(Name = "Total value")]
-        public double TotalValue
+        public decimal TotalValue
         {
             get
             {

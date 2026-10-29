@@ -21,7 +21,7 @@ namespace PersonalFinances.Models
         [Display(Name = "Finish date")]
         public DateTime? FinishDate { get; set; }
 
-        public double? Budget { get; set; }
+        public decimal? Budget { get; set; }
 
         [StringLength(100)]
         public string Description { get; set; }
@@ -34,7 +34,7 @@ namespace PersonalFinances.Models
         public virtual ICollection<Movement> Movements { get; set; } = new List<Movement>();
 
         [Display(Name = "Total credit")]
-        public double TotalCredit
+        public decimal TotalCredit
         {
             get
             {
@@ -43,7 +43,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Total debit")]
-        public double TotalDebit
+        public decimal TotalDebit
         {
             get
             {
@@ -52,7 +52,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Project balance")]
-        public double ProjectBalance
+        public decimal ProjectBalance
         {
             get
             {
@@ -61,7 +61,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Left budget")]
-        public double LeftBudget
+        public decimal LeftBudget
         {
             get
             {
@@ -70,7 +70,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Bugdet used (percentage)")]
-        public double BudgetUsedPercentage
+        public decimal BudgetUsedPercentage
         {
             get
             {

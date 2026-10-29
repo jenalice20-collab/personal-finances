@@ -25,6 +25,7 @@ namespace PersonalFinances.Repositories
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Properties<decimal>().Configure(configuration => configuration.HasPrecision(18, 2));
         }
     }
 }

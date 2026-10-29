@@ -12,7 +12,7 @@ namespace PersonalFinances.Models.ViewModels
         public DateTime PaymentDate { get; set; }
 
         [Display(Name = "Value to pay")]
-        public double PaidValue { get; set; }
+        public decimal PaidValue { get; set; }
 
         [Display(Name = "Automatically launch")]
         public bool AutomaticallyLaunch { get; set; }

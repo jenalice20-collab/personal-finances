@@ -121,7 +121,7 @@ namespace PersonalFinances.Services
         /// Get the category balance
         /// </summary>
         /// <returns></returns>
-        public double CategoryBalance (IEnumerable<Movement> movements)
+        public decimal CategoryBalance (IEnumerable<Movement> movements)
         {
             return TotalCredit(movements) - TotalDebit(movements);
         }
@@ -131,7 +131,7 @@ namespace PersonalFinances.Services
         /// </summary>
         /// <param name="movements"></param>
         /// <returns></returns>
-        public double TotalCredit (IEnumerable<Movement> movements)
+        public decimal TotalCredit (IEnumerable<Movement> movements)
         {
             return movements.TotalCredit();
         }
@@ -141,7 +141,7 @@ namespace PersonalFinances.Services
         /// </summary>
         /// <param name="movements"></param>
         /// <returns></returns>
-        public double TotalDebit (IEnumerable<Movement> movements)
+        public decimal TotalDebit (IEnumerable<Movement> movements)
         {
             return movements.TotalDebit();
         }

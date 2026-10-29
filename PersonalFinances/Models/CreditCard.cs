@@ -25,15 +25,15 @@ namespace PersonalFinances.Models
         [StringLength(2)]
         public string PayDay { get; set; }
 
-        [Range(0.01, double.MaxValue, ErrorMessage = "The minimum value is 0.01")]
-        public double Limit { get; set; }
+        [Range(typeof(decimal), "0.01", "79228162514264337593543950335", ErrorMessage = "The minimum value is 0.01")]
+        public decimal Limit { get; set; }
 
         public bool Enabled { get; set; }
 
         public virtual ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
 
         [Display(Name = "Total debit")]
-        public double TotalDebit
+        public decimal TotalDebit
         {
             get
             {
@@ -42,7 +42,7 @@ namespace PersonalFinances.Models
         }
 
         [Display(Name = "Remaining limit")]
-        public double RemainingLimit
+        public decimal RemainingLimit
         {
             get
             {

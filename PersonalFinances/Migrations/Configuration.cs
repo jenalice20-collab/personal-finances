@@ -1,6 +1,7 @@
 namespace PersonalFinances.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     using Models;
 
@@ -18,39 +19,32 @@ namespace PersonalFinances.Migrations
             if (_seedDatabase)
             {
                 // Add Transfer category and subcategory
-                Subcategory transferCreditSubcategory = new Subcategory
-                {
-                    Name = "Other",
-                    Category = new Category { Name = "Transfer", Type = "C", Enabled = true },
-                    Enabled = true,
-                    CanEdit = false
-                };
-
-                Subcategory transferDebitSubcategory = new Subcategory
-                {
-                    Name = "Other",
-                    Category = new Category { Name = "Transfer", Type = "D", Enabled = true },
-                    Enabled = true,
-                    CanEdit = false
-                };
+                AddCategoryIfMissing(context, "Transfer", "C", "Other");
+                AddCategoryIfMissing(context, "Transfer", "D", "Other");
 
                 // Add Payment category and Credit card subcategory
-                Subcategory creditCardSubcategory = new Subcategory
-                {
-                    Name = "Credit card",
-                    Category = new Category { Name = "Payments", Type = "D", Enabled = true },
-                    Enabled = true,
-                    CanEdit = false
-                };
-
-                context.Subcategories.AddOrUpdate(
-                    transferCreditSubcategory, 
-                    transferDebitSubcategory, 
-                    creditCardSubcategory
-                );
+                AddCategoryIfMissing(context, "Payments", "D", "Credit card");
 
                 context.SaveChanges();
             }
+        }
+
+        /// <summary>
+        /// Add a default category with one subcategory, only if the category does not exist yet,
+        /// so the Seed method can run on every Update-Database without creating duplicates
+        /// </summary>
+        private static void AddCategoryIfMissing (Repositories.DatabaseContext context, string name, string type, string subcategoryName)
+        {
+            if (context.Categories.Any(c => c.Name == name && c.Type == type))
+                return;
+
+            context.Subcategories.Add(new Subcategory
+            {
+                Name = subcategoryName,
+                Category = new Category { Name = name, Type = type, Enabled = true },
+                Enabled = true,
+                CanEdit = false
+            });
         }
     }
 }

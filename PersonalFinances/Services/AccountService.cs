@@ -80,7 +80,7 @@ namespace PersonalFinances.Services
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="ammount"></param>
-        private async Task IncreaseBalance (int accountId, double ammount)
+        private async Task IncreaseBalance (int accountId, decimal ammount)
         {
             var account = await GetById(accountId);
             account.Balance += ammount;
@@ -93,7 +93,7 @@ namespace PersonalFinances.Services
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="ammount"></param>
-        private async Task DecreaseBalance (int accountId, double ammount)
+        private async Task DecreaseBalance (int accountId, decimal ammount)
         {
             var account = await GetById(accountId);
             account.Balance -= ammount;
@@ -166,7 +166,7 @@ namespace PersonalFinances.Services
         /// </summary>
         /// <param name="movements"></param>
         /// <returns></returns>
-        public double BalanceOnMonth (IEnumerable<Movement> movements)
+        public decimal BalanceOnMonth (IEnumerable<Movement> movements)
         {
             Func<Movement, bool> condition = (m) =>
             {
@@ -174,10 +174,19 @@ namespace PersonalFinances.Services
             };
 
             movements = movements.Where(condition);
-            double totalCredit = movements.TotalCredit();
-            double totalDebit = movements.TotalDebit();
+            decimal totalCredit = movements.TotalCredit();
+            decimal totalDebit = movements.TotalDebit();
 
             return totalCredit - totalDebit;
         }
+
+        // Get all enabled accounts with a balance greater than the given amount
+        public async Task<IEnumerable<Account>> GetEnabledAccountsWithBalanceGreaterThan(decimal amount)
+        {
+            var accounts = await _repository.GetAccounts();
+            return accounts.Where(a => a.Enabled && a.Balance > amount);
+        }
+
+
     }
 }

@@ -26,10 +26,10 @@ namespace PersonalFinances.Models
         public int TargetId { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "The minimum value is 0.01")]
-        public double Value { get; set; }
+        [Range(typeof(decimal), "0.01", "79228162514264337593543950335", ErrorMessage = "The minimum value is 0.01")]
+        public decimal Value { get; set; }
 
-        public double? Tax { get; set; }
+        public decimal? Tax { get; set; }
 
         [Display(Name = "Inclusion date")]
         public DateTime InclusionDate { get; set; }
@@ -47,7 +47,7 @@ namespace PersonalFinances.Models
         public string Observation { get; set; }
 
         [Display(Name = "Total value")]
-        public double TotalValue
+        public decimal TotalValue
         {
             get
             {

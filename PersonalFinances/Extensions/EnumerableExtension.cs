@@ -12,7 +12,7 @@ namespace System.Collections.Generic
         /// </summary>
         /// <param name="collection"></param>
         /// <returns></returns>
-        public static double TotalCredit (this IEnumerable<Movement> collection)
+        public static decimal TotalCredit (this IEnumerable<Movement> collection)
         {
             return collection.Where(x => x.Type.Equals("C") && x.MovementStatus.Equals(MovementStatus.Launched) && x.Invoice == null).Sum(x => x.TotalValue);
         }
@@ -22,7 +22,7 @@ namespace System.Collections.Generic
         /// </summary>
         /// <param name="collection"></param>
         /// <returns></returns>
-        public static double TotalDebit(this IEnumerable<Movement> collection)
+        public static decimal TotalDebit(this IEnumerable<Movement> collection)
         {
             return collection.Where(x => x.Type.Equals("D") && x.MovementStatus.Equals(MovementStatus.Launched) && x.Invoice == null).Sum(x => x.TotalValue);
         }
