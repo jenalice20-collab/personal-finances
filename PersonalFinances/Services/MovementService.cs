@@ -11,7 +11,7 @@ using PersonalFinances.Services.Exceptions;
 
 namespace PersonalFinances.Services
 {
-    public class MovementService
+    public class MovementService : IMovementService
     {
         private MovementRepository _repository = new MovementRepository();
         private AccountService _accountService = new AccountService();

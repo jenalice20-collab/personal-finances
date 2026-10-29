@@ -9,7 +9,7 @@ using PersonalFinances.Services.Exceptions;
 
 namespace PersonalFinances.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private AccountRepository _repository = new AccountRepository();
         private MovementService _movementService;

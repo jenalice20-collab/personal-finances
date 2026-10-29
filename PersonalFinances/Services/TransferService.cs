@@ -12,10 +12,30 @@ namespace PersonalFinances.Services
 {
     public class TransferService
     {
-        private TransferRepository _repository = new TransferRepository();
-        private MovementService _movementService = new MovementService();
-        private CategoryService _categoryService = new CategoryService();
-        private AccountService _accountService = new AccountService();
+        private readonly ITransferRepository _repository;
+        private readonly IMovementService _movementService;
+        private readonly ICategoryService _categoryService;
+        private readonly IAccountService _accountService;
+
+        /// <summary>
+        /// Create the service with its default dependencies (used by the controllers)
+        /// </summary>
+        public TransferService ()
+            : this(new TransferRepository(), new MovementService(), new CategoryService(), new AccountService())
+        {
+        }
+
+        /// <summary>
+        /// Create the service with injected dependencies (used by unit tests to pass mocks)
+        /// </summary>
+        public TransferService (ITransferRepository repository, IMovementService movementService,
+            ICategoryService categoryService, IAccountService accountService)
+        {
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _movementService = movementService ?? throw new ArgumentNullException(nameof(movementService));
+            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
+            _accountService = accountService ?? throw new ArgumentNullException(nameof(accountService));
+        }
 
         /// <summary>
         /// Get all transfers

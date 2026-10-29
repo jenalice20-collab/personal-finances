@@ -18,7 +18,7 @@ namespace PersonalFinances.Models
         public string Description { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.01", "79228162514264337593543950335", ErrorMessage = "The minimum value is 0.01")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "The minimum value is 0.01")]
         public decimal Value { get; set; }
         
         public decimal? Increase { get; set; }

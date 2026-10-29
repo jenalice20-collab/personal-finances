@@ -8,7 +8,7 @@ using PersonalFinances.Models.Enums;
 
 namespace PersonalFinances.Repositories
 {
-    public class TransferRepository
+    public class TransferRepository : ITransferRepository
     {
         /// <summary>
         /// Get all transfers

@@ -8,7 +8,7 @@ using PersonalFinances.Services.Exceptions;
 
 namespace PersonalFinances.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
         private CategoryRepository _repository = new CategoryRepository();
         private SubcategoryService _subcategoryService = new SubcategoryService();
